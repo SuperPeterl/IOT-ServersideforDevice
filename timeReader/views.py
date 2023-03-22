@@ -7,10 +7,13 @@ from django.http import JsonResponse
 
     
 
+from django.http import JsonResponse
+from django.middleware import csrf
+
 def getget(request):
-    print('i get get')
-    response = HttpResponse(status=200)
-    return response
+    token = csrf.get_token(request)
+    response_data = {'csrf_token': token}
+    return JsonResponse(response_data)
 
 
 
