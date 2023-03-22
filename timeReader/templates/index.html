@@ -28,12 +28,12 @@
       </tr>
     </tfoot>
     <tbody>
+      {% for tm in tms %}
       <tr>
-        {% for tm in tms %}
           <td>{{tm.addDate|date:"d/m/Y H:i"}}</td>
           <td>{{tm.timeReadedminute}}</td>                      
-        {% endfor %}
       </tr>
+      {% endfor %}
     </tbody>
   </table>
 </main>
