@@ -25,6 +25,7 @@ def postpost(request):
         # Do something with the integer value
         # ...
         print("WOOWOWOWOWOWO",value)
+        print(request.POST)
         # Return a JSON response with a success message
         return JsonResponse({'success': True})
     else:
