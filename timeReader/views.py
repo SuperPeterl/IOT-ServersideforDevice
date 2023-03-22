@@ -20,8 +20,8 @@ def getget(request):
 def postpost(request):
     if request.method == 'POST':
         # Get the integer value from the request
-        my_int = request.POST.get('my_int')
-        
+        value = request.POST.get('value')
+        print("I GET POST wow")
         # Do something with the integer value
         # ...
         
