@@ -25,7 +25,7 @@ def postpost(request):
         value = request.POST.get('x')
         value = int(value)
         # Do something with the integer value
-        tr = timeReader(timeReadedmilsec = value ,timeReadedsecond = value/1000 ,timeReadedminute = value/(60*1000)).create()
+        tr = timeReader(timeReadedmilsec = value ,timeReadedsecond = value/1000 ,timeReadedminute = value/(60*1000))
         tr.save()
         # Return a JSON response with a success message
         return JsonResponse({'success': True})
