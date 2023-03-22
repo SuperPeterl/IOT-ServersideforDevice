@@ -16,7 +16,7 @@ def getget(request):
     return JsonResponse(response_data)
 
 
-
+@csrf_exempt
 def postpost(request):
     if request.method == 'POST':
         # Get the integer value from the request
