@@ -62,7 +62,7 @@ def show(request):
 def fake(request):
     value = random.randint(60000,1800000)
     # Do something with the integer value
-    if value >= 5*60*1000:
+    if value >= 60*1000:
         tr = timeReader(timeReadedmilsec = value ,timeReadedsecond = value/1000 ,timeReadedminute = value/(60*1000))
         tr.save()
     return HttpResponse("faking")
