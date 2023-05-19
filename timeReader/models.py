@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils import timezone
 # Create your models here.
-class timeReader(models.Model):
+class status(models.Model):
     addDate = models.DateTimeField(default=timezone.now)
-    timeReadedmilsec = models.PositiveIntegerField(default=0)
-    timeReadedsecond = models.PositiveIntegerField(default=0)
-    timeReadedminute = models.PositiveIntegerField(default=0)
+    stid = models.CharField(default='',max_length=255)
+    stdesc = models.CharField(default='',max_length=255)
+    st = models.BooleanField(default= 0)
+    listened = models.BooleanField(default=0)

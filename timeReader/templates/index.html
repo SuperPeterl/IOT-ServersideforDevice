@@ -4,15 +4,16 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>TimeReader</title>
+  <title>Nueafa profile</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-<div class = 'bigbox'>   
-  <div class = 'box'>
-    <h>test</h>
+  <div class="shutdown-btn-container">
+    <form action="/shutdown" method="POST">
+      <input type="hidden" name="value" value="001">
+      <button type="submit"class="shutdown-btn">Shutdown</button>
+    </form>
   </div>
-</div>
 </body>
 </html>
