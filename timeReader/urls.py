@@ -3,4 +3,5 @@ from django.urls import path
 urlpatterns = [
     path('',views.show,name= ''),
     path('listen',views.listen,name= ''),
+    path('order',views.order,name= ''),
 ]

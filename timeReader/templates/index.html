@@ -10,7 +10,8 @@
 </head>
 <body>
   <div class="shutdown-btn-container">
-    <form action="/shutdown" method="POST">
+    <form action="/order" method="POST">
+      {% csrf_token %}
       <input type="hidden" name="value" value="001">
       <button type="submit"class="shutdown-btn">Shutdown</button>
     </form>

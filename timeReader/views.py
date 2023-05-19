@@ -32,3 +32,10 @@ def listen(request):
         i.save()
     print(res)
     return HttpResponse(res)
+
+def order(request):
+    value = request.POST.get('value')
+    st = status(stid = value)
+    st.save()
+    context = {}
+    return render(request,'index.html',context)
