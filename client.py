@@ -2,7 +2,7 @@ import os
 import requests
 import time
 def process_request():
-    response = requests.get('http://localhost:8000/listen')
+    response = requests.get('http://20.219.16.119:8000/listen')
     res = [int(x) for x in response.text.split(',')]
     for o in res:
         if o == 1:

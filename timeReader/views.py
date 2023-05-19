@@ -28,7 +28,7 @@ def listen(request):
     st = status.objects.filter(listened = 0)
     res = ','.join([x.stid for x in st])
     for i in st:
-        i.listened = 0
+        i.listened = 1
         i.save()
     print(res)
     return HttpResponse(res)
