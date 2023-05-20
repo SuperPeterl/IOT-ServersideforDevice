@@ -1,7 +1,6 @@
 body{
-  height: 2000;
-  width: 2000;
   background-color: black;
+  margin: 10px;
 }
 
 .shutdown-btn-container {
@@ -9,11 +8,16 @@ body{
   justify-content: center;
 }
 
+form{
+}
+
 .shutdown-btn {
+  border-radius: 10px;
   background-color: #fbfcfb;
   color: rgb(245, 6, 6);
-  padding: 10px 20px;
+  padding: 50px 100px;
   font-size: 16px;
   border: none;
   cursor: pointer;
+  margin: 10px;
 }
