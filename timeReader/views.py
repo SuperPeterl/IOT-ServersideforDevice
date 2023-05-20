@@ -33,7 +33,7 @@ def listen(request):
             i.save()
         print(res)
         return HttpResponse(res)
-
+    return HttpResponse()
 
 def order(request):
     value = request.POST.get('value')
