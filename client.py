@@ -6,8 +6,9 @@ from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 
 def process_request():
     response = requests.get('http://20.219.16.119:8000/listen')
+    print(response.text)
     if response.text == '':
-        return
+        return 
     res = [int(x) for x in response.text.split(',')]
     for o in res:
         if o == 1:

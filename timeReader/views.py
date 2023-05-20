@@ -26,7 +26,7 @@ def fake(request):
 
 def listen(request):
     st = status.objects.filter(listened = 0)
-    if len(st) < 1:
+    if len(st) > 0:
         res = ','.join([x.stid for x in st])
         for i in st:
             i.listened = 1
