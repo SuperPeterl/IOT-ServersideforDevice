@@ -1,21 +1,50 @@
 import os
 import requests
 import time
+from comtypes import CLSCTX_ALL
+from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
+
 def process_request():
     response = requests.get('http://20.219.16.119:8000/listen')
+    if response.text == '':
+        return
     res = [int(x) for x in response.text.split(',')]
     for o in res:
         if o == 1:
-            # Execute the command to turn off the computer
-            #os.system('shutdown /s /t 5')
-            print("Computer is shutting down...")
+            shutdown()
+        if o == 2:
+            volumemanager(1)
+        if o == 3:
+            volumemanager(0)
         else:
             print("noting")
 
+def shutdown():
+    # Execute the command to turn off the computer
+            l = list(range(5,-1,-1))
+            for i in l:
+                print(f'computer is shutting down in {i}')
+                time.sleep(1)
+            os.system('shutdown /s /t 0')
+            print("Computer is shutting down...")
+
+def volumemanager(do):
+    devices = AudioUtilities.GetSpeakers()
+    interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+    volume = interface.QueryInterface(IAudioEndpointVolume)
+    vmin,vnor,vmax = volume.GetVolumeRange()
+    vnow = volume.GetMasterVolumeLevel()
+    volume.SetMasterVolumeLevel(vnow+5, None)
+    print("volume.GetMasterVolumeLevel(): %s" % volume.GetMasterVolumeLevel())
+    if do :
+        volume.SetMasterVolumeLevel(vnow+5, None)
+    else :
+        volume.SetMasterVolumeLevel(vnow-5, None)
 
 while True :
     try :
         time.sleep(5)
-        process_request()
-    except:
-        print("error")
+        #process_request()
+        
+    except Exception as e:
+        print(e)

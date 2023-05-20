@@ -26,12 +26,14 @@ def fake(request):
 
 def listen(request):
     st = status.objects.filter(listened = 0)
-    res = ','.join([x.stid for x in st])
-    for i in st:
-        i.listened = 1
-        i.save()
-    print(res)
-    return HttpResponse(res)
+    if len(st < 1):
+        res = ','.join([x.stid for x in st])
+        for i in st:
+            i.listened = 1
+            i.save()
+        print(res)
+        return HttpResponse(res)
+
 
 def order(request):
     value = request.POST.get('value')
