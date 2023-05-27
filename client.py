@@ -38,10 +38,19 @@ def volumemanager(do):
     volume.SetMasterVolumeLevel(vnow+5, None)
     print("volume.GetMasterVolumeLevel(): %s" % volume.GetMasterVolumeLevel())
     if do :
-        volume.SetMasterVolumeLevel(vnow+5, None)
+        if vnow+5 > 0:
+            volume.SetMasterVolumeLevel(0, None)
+        else:
+            volume.SetMasterVolumeLevel(vnow+a, None)
     else :
-        volume.SetMasterVolumeLevel(vnow-5, None)
+        if vnow -5 < -65.25:
+            volume.SetMasterVolumeLevel(-65.25, None)
+        else:
+            volume.SetMasterVolumeLevel(vnow-5, None)
 
+
+
+print("start now")
 while True :
     try :
         time.sleep(5)

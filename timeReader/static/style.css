@@ -9,13 +9,15 @@ body{
 }
 
 form{
+  display: flex;
+  justify-content: center
 }
 
 .shutdown-btn {
   border-radius: 10px;
   background-color: #fbfcfb;
   color: rgb(245, 6, 6);
-  padding: 50px 100px;
+  padding: 50% 100%;
   font-size: 16px;
   border: none;
   cursor: pointer;
