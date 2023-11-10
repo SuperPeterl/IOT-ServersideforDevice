@@ -1,34 +1,60 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nueafa profile</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-  <div class="shutdown-btn-container">
-    <form action="/order" method="POST">
-      {% csrf_token %}
-      <input type="hidden" name="value" value="001">
-      <button type="submit"class="shutdown-btn">Shutdown</button>
-    </form>
-    <form action="/order" method="POST">
-      {% csrf_token %}
-      <input type="hidden" name="value" value="002">
-      <button type="submit"class="shutdown-btn">volume up</button>
-    </form>
-    <form action="/order" method="POST">
-      {% csrf_token %}
-      <input type="hidden" name="value" value="003">
-      <button type="submit"class="shutdown-btn">volume down</button>
-    </form>
+  <div class="container">
+    <div class="shutdown-btn-container">
+      <form id="shutdownForm" action="/order" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="value" value="001">
+        <button type="button" class="shutdown-btn" onclick="submitForm('shutdownForm')">Shutdown</button>
+      </form>
+      <form id="volumeUpForm" action="/order" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="value" value="002">
+        <button type="button" class="shutdown-btn" onclick="submitForm('volumeUpForm')">Volume Up</button>
+      </form>
+      <form id="volumeDownForm" action="/order" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="value" value="003">
+        <button type="button" class="shutdown-btn" onclick="submitForm('volumeDownForm')">Volume Down</button>
+      </form>
+    </div>
   </div>
-  <div class = 'cmd'>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" placeholder="Enter your name" required><br><br>
-  </div>
+
+  <script>
+    function submitForm(formId) {
+      var form = document.getElementById(formId);
+      var formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        // You can handle success here if needed
+        console.log('Form submitted successfully');
+      })
+      .catch(error => {
+        // Handle errors here
+        console.error('There was a problem with the fetch operation:', error);
+      });
+    }
+  </script>
 </body>
 </html>
